@@ -1,0 +1,39 @@
+.taxelect-wrapper{
+	height: 30px;
+	position: absolute;
+	padding-bottom: 2px;
+	border: 3px solid #E7EDEF;
+	text-indent: 10px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #f0f8fd 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f0f8fd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f0f8fd 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#f0f8fd 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#f0f8fd 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ffffff 0%,#f0f8fd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f8fd',GradientType=0 ); /* IE6-9 */
+}
+.taxelect-wrapper.opened{
+	z-index: 1;
+}
+.taxelect-wrapper > *:first-child{
+	border: 1px solid #C1C5CF;
+}
+.taxelect-ul{
+	height: 100%;
+	overflow: hidden;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.taxelected{
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+}
+.taxelect-option.chosen{
+	background-color: #E5EFED;
+}
+.taxearch{
+	text-indent: 5px;
+	padding: 0 5px;
+}
