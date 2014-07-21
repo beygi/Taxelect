@@ -37,3 +37,10 @@
 	text-indent: 5px;
 	padding: 0 5px;
 }
+.taxelect-icon{
+	position: absolute;
+	height: 100%;
+	width: 30px;
+	background-color: #FFF;
+	left:0;
+}

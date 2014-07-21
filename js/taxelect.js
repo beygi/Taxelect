@@ -2,7 +2,6 @@
 	$.fn.taxelect = function (options) {
 		// set the default values
 		defaults = {
-			hasIcons: false,
 			width: 190,
 			color: '#909597',
 			defaultOption: '-1',
@@ -21,30 +20,35 @@
 				parent        = $(this).parent(),
 				selectName    = $(this).attr('name'),
 				selectFormId  = $(this).parents('form').attr('id'),
-				hasSearch     = $(this).data('taxelect-search') ? true: false,
+				hasSearch     = $(this).data('has-search') ? true: false,
 				target        = '';
 			// make a list of needed options
 			$(this).children().each(function(){
-				selectOptions.push($(this).text());
+				var arr = {};
+				arr['text'] = $(this).text();
+				arr['hasIcon'] = $(this).data('has-icon') ? true: false;
+				selectOptions.push(arr);
 			});
 			// build the html structure
 			var tmp = '';
-			for (var i = 0; i < selectOptions.length; i++) {
-				tmp += '<li class="taxelect-option" data-option="' 
-				+ i + '">' + selectOptions[i] + '</li>\n';
-			};
 			if (hasSearch){
-				tmp = '<li class="taxearch">\n<input type="text">' + tmp + '</li>\n'
+				tmp = '<li class="taxearch"><input type="text"></li>'
 			}
+			for (var i = 0; i < selectOptions.length; i++) {
+				var icon = selectOptions[i].hasIcon ? '<span id="' + selectFormId 
+				+ '-' + selectName + '-option-' + i + '-span' + '" class="taxelect-icon"></span>':'';
+				tmp += '<li class="taxelect-option" data-option="' 
+				+ i + '">' + selectOptions[i].text + icon + '</li>';
+			};
 			// add needed elements after select
-			$(this).after('<div class="taxelect-wrapper">\n' 
+			$(this).after('<div class="taxelect-wrapper">' 
 				+ '<ul class="taxelect-ul" data-form-id="' 
 				+ selectFormId + '" data-name="' 
-				+ selectName + '">\n'
+				+ selectName + '">'
 				+ '<li class="taxelected" data-default-option="' 
 				+ settings.defaultOption 
 				+ '">' + settings.defaultString + '</li>' 
-				+ tmp + '\n</ul>\n</div>');
+				+ tmp + '</ul></div>');
 			// assign added elements to variables
 			var selectWrapper = $(this).siblings('.taxelect-wrapper'),
 				dropdownItems = selectWrapper.find('.taxelect-option'),
@@ -59,7 +63,11 @@
 				height: settings.optionHeight,
 				lineHeight: settings.optionHeight + 'px'
 			})
-
+			// initialize and then disable the scrollbar on page load
+			selectWrapper.mCustomScrollbar({
+		    	theme: "minimal-dark"
+		    });
+			selectWrapper.mCustomScrollbar('disable',true);
 			// open a dropdown on menu on click
 			selectWrapper.click(function(){
 				var other = $('#' + selectFormId + ' .opened');
